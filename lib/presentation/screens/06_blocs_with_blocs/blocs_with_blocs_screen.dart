@@ -12,22 +12,25 @@ class BlocsWithBlocsScreen extends StatelessWidget {
     final locations = context.watch<HistoricLocationBloc>().state.locations;
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Blocs con Blocs'),
+        title: Text('Ubicaciones ${locations.length}'),
       ),
       body:  Center(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
+          padding: const EdgeInsets.symmetric(horizontal: 10),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Text('$geolocationCubit'),
+              Text('Ubicacion actual: $geolocationCubit'),
           const SizedBox(height: 50,),
               Expanded(
                 child: ListView.builder(
                   itemCount: locations.length,
                   itemBuilder: (context, index) {
                     final location = locations[index];
-                    return Text('$location');
+                    final (lat,lng) = location;
+                    return ListTile(
+                      title: Text('Lat: $lat Lng: $lng'),
+                    );
                 },)
                 ),
                 const SizedBox(height: 50,)
